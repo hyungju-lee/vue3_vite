@@ -15,6 +15,7 @@ const SEARCH_LISTS_POSITION: InjectionKey<Ref> = Symbol('SEARCH_LISTS_POSITION')
 const CHECK_SEARCH_BOX_POSITION: InjectionKey<() => void> = Symbol('CHECK_SEARCH_BOX_POSITION')
 
 const ESC_SEARCH_INPUT: InjectionKey<() => void> = Symbol('ESC_SEARCH_INPUT');
+const DELETE_SEARCH_KEYWORD: InjectionKey<() => void> = Symbol('DELETE_SEARCH_KEYWORD');
 
 export {
     CLICK_SEARCH_BUTTON,
@@ -29,5 +30,6 @@ export {
     SEARCH_INPUT_VALUE,
     SEARCH_LISTS_POSITION,
     CHECK_SEARCH_BOX_POSITION,
-    ESC_SEARCH_INPUT
+    ESC_SEARCH_INPUT,
+    DELETE_SEARCH_KEYWORD
 }

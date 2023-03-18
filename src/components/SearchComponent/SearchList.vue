@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import IconDelete from '@/components/icons/IconDelete.vue';
 import {inject} from "vue";
-import {UPDOWN_SEARCH_LIST, CLICK_SEARCH_LIST, ESC_SEARCH_INPUT} from "@/components/SearchComponent/keys";
+import {UPDOWN_SEARCH_LIST, CLICK_SEARCH_LIST, ESC_SEARCH_INPUT, DELETE_SEARCH_KEYWORD} from "@/components/SearchComponent/keys";
 // 프롭스
 interface Props {
   tabIndex?: number;
   class?: string;
   style?: object;
+  keyword: string;
 }
 const props = withDefaults(defineProps<Props>(), {
   tabIndex: 0,
@@ -15,6 +17,7 @@ const props = withDefaults(defineProps<Props>(), {
 const upDownSearchList = inject(UPDOWN_SEARCH_LIST);
 const clickSearchList = inject(CLICK_SEARCH_LIST);
 const escSearchInput = inject(ESC_SEARCH_INPUT);
+const deleteSearchKeyword = inject(DELETE_SEARCH_KEYWORD);
 </script>
 
 <template>
@@ -31,6 +34,14 @@ const escSearchInput = inject(ESC_SEARCH_INPUT);
       :style="{...style}"
   >
     <slot>검색 키워드 항목</slot>
+    <button
+        @click="deleteSearchKeyword"
+        type="button"
+        :data-keyword="keyword"
+        style="position: absolute; top: 0; right: 0; width: 44px; height: 100%"
+    >
+      <IconDelete />
+    </button>
   </li>
 </template>
 

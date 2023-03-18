@@ -21,6 +21,20 @@ function setLocalStorageArrayData(key: string, value: string, num = 4): void {
     }
 }
 
+function removeLocalStorageArrayData(key: string, value: string): void {
+    const res = getLocalStorage(key);
+    if (!res) {
+        return;
+    }
+    const values = JSON.parse(res);
+    if (!values || typeof values === 'string') {
+        return;
+    }
+    values.splice(values.indexOf(value), 1);
+    removeLocalStorage(key);
+    setLocalStorage(key, JSON.stringify(values));
+}
+
 function getLocalStorage(key: string): string | null {
     return localStorage.getItem(key);
 }
@@ -33,4 +47,4 @@ function clearLocalStorage() {
     localStorage.clear();
 }
 
-export {setLocalStorage, setLocalStorageArrayData, getLocalStorage, removeLocalStorage, clearLocalStorage}
+export {setLocalStorage, setLocalStorageArrayData, getLocalStorage, removeLocalStorage, clearLocalStorage, removeLocalStorageArrayData}

@@ -13,9 +13,10 @@ import {
   SEARCH_INPUT_VALUE,
   SEARCH_LISTS_POSITION,
   CHECK_SEARCH_BOX_POSITION,
-  ESC_SEARCH_INPUT
+  ESC_SEARCH_INPUT,
+  DELETE_SEARCH_KEYWORD
 } from "@/components/SearchComponent/keys";
-import {setLocalStorageArrayData, getLocalStorage} from "@/utils/localStorage";
+import {setLocalStorageArrayData, getLocalStorage, removeLocalStorageArrayData} from "@/utils/localStorage";
 import {isTextInputElement, isHtmlElement} from '@/typeGuard';
 
 // 프롭스
@@ -176,6 +177,18 @@ const escSearchInput = () => {
   isActiveSearchKeywords.value = false;
 }
 
+const deleteSearchKeyword = (e: Event) => {
+  const target = e.currentTarget;
+  if (!isHtmlElement(target)) {
+    return
+  }
+  if (!target.dataset.keyword) {
+    return;
+  }
+  removeLocalStorageArrayData(props.localStorageKey, target.dataset.keyword);
+  getLocalStorageSearchKeywords(props.localStorageKey);
+}
+
 onMounted(() => {
   window.addEventListener('click', checkClickedElement);
   window.addEventListener('scroll', checkSearchBoxPosition);
@@ -203,6 +216,7 @@ provide(SEARCH_LISTS, searchLists);
 provide(SEARCH_INPUT_VALUE, searchInputValue);
 provide(SEARCH_LISTS_POSITION, searchListsPosition);
 provide(CHECK_SEARCH_BOX_POSITION, checkSearchBoxPosition);
+provide(DELETE_SEARCH_KEYWORD, deleteSearchKeyword)
 </script>
 
 <template>

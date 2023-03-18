@@ -166,9 +166,12 @@ emitter.on(`error:${KAKAO_PAGE_IS_MORE_THAN_MAX}`, err => {
               v-for="(keyword, index) in searchBox.keywords"
               :key="index"
               :style="{
-              padding: '10px',
-            }"
-          >{{keyword}}</SearchList>
+                padding: '10px',
+              }"
+              :keyword="keyword"
+          >
+            {{keyword}}
+          </SearchList>
         </SearchLists>
       </SearchBox>
     </div>
