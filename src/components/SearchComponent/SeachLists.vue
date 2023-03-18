@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {inject, onMounted, watch} from "vue";
+import {computed, inject, onMounted, watch} from "vue";
 import {SEARCH_LISTS, SEARCH_LISTS_POSITION, CHECK_SEARCH_BOX_POSITION} from "@/components/SearchComponent/keys";
 import {isFunctionType} from "@/typeGuard";
 
@@ -20,6 +20,13 @@ const searchLists = inject(SEARCH_LISTS);
 const searchListsPosition = inject(SEARCH_LISTS_POSITION);
 const checkSearchBoxPosition = inject(CHECK_SEARCH_BOX_POSITION);
 
+const componentStyle = computed(() => {
+  return {
+    ...props.style,
+    ...searchListsPosition?.value,
+  }
+})
+
 onMounted(() => {
   if (!isFunctionType(checkSearchBoxPosition)) {
     return;
@@ -35,8 +42,7 @@ onMounted(() => {
         class="search_list"
         :class="props.class"
         :style="{
-          ...style,
-          ...searchListsPosition,
+          ...componentStyle,
         }"
     >
       <slot>검색 키워드 목록</slot>
