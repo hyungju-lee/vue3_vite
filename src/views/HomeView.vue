@@ -129,7 +129,7 @@ emitter.on(`error:${KAKAO_PAGE_IS_MORE_THAN_MAX}`, err => {
 </script>
 
 <template>
-  <main ref="scrollArea">
+  <main class="main" ref="scrollArea">
     <div style="padding: 10px">
       <SearchBox
           v-slot="searchBox"
@@ -260,8 +260,17 @@ emitter.on(`error:${KAKAO_PAGE_IS_MORE_THAN_MAX}`, err => {
 </template>
 
 <style scoped lang="scss">
-.chx_filter:checked + .lb_filter {
-  background-color: #F2C037 !important;
+.main {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.chx_filter {
+  &:checked {
+    + .lb_filter {
+      background-color: #F2C037 !important;
+    }
+  }
 }
 
 .figure {
