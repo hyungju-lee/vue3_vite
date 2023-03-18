@@ -19,6 +19,7 @@ const escSearchInput = inject(ESC_SEARCH_INPUT);
 
 <template>
   <li
+      class="search_item"
       :tabindex="tabIndex"
       @keydown.prevent.stop
       @keyup.up="upDownSearchList"
@@ -34,7 +35,10 @@ const escSearchInput = inject(ESC_SEARCH_INPUT);
 </template>
 
 <style scoped lang="scss">
-//li:focus {
-//  //border: 2px solid #000;
-//}
+.search_item {
+  position: relative;
+  &:hover {
+    background-color: #ddd;
+  }
+}
 </style>
